@@ -60,3 +60,8 @@ class_names
 image_batch, label_batch = next(iter(train_batches.take(1)))
 image_batch = image_batch.numpy()
 label_batch = label_batch.numpy()
+predicted_batch = model.predict(image_batch)
+predicted_batch = tf.squeeze(predicted_batch).numpy()
+predicted_ids = np.argmax(predicted_batch, axis=-1)
+predicted_class_names = class_names[predicted_ids]
+predicted_class_names
