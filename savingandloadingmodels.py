@@ -90,3 +90,14 @@ reloaded = tf.keras.models.load_model(
 )
 reloaded.summary()
 
+result_batch = model.predict(image_batch)
+reloaded_result_batch = reloaded.predict(image_batch)
+(abs(result_batch - reloaded_result_batch)).max()
+# Training reloaded model
+EPOCHS = 3
+history = reloaded.fit(train_batches,
+                       epochs=EPOCHS,
+                       validation_data=validation_batches)
+#
+t =
+
