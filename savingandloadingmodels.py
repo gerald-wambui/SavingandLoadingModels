@@ -18,3 +18,6 @@ import matplotlib.pylab as plt
 import tensorflow as tf
 import tensorflow_hub as hub
 import tensorflow_datasets as tfds
+tfds.disable_progress_bar()
+from tensorflow.keras import layers
+
