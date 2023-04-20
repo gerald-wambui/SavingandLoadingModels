@@ -46,3 +46,17 @@ model = tf.keras.Sequential([
     layers.Dense(2)
 ])
 model.summary()
+model.compile(
+    optimizer='adam',
+    loss=tf.losses.SparseCategoricalCrossentropy(from_logits=True),
+    metrics=['accuracy']
+)
+EPOCHS=3
+history = model.fit(train_batches,
+                    epochs=EPOCHS,
+                    validation_data=validation_batches)
+class_names = np.array(info.features['label'].names)
+class_names
+image_batch, label_batch = next(iter(train_batches.take(1)))
+image_batch = image_batch.numpy()
+label_batch = label_batch.numpy()
