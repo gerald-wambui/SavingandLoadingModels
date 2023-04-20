@@ -21,3 +21,10 @@ import tensorflow_datasets as tfds
 tfds.disable_progress_bar()
 from tensorflow.keras import layers
 
+(train_examples, validation_examples), info = tfds.load(
+    'cats_vs_dogs',
+    split=['train[:80%]', 'train[80%:]'],
+    with_info=True,
+    as_supervised=True,
+)
+
