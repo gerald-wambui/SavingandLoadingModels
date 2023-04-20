@@ -7,3 +7,14 @@
         loading models
         download models to Local Disk for deployment to different platforms
 """
+
+# Imports
+!pip install -U tensorflow_hub
+!pip install -U tensorflow_datasets
+
+import time
+import numpy as np
+import matplotlib.pylab as plt
+import tensorflow as tf
+import tensorflow_hub as hub
+import tensorflow_datasets as tfds
