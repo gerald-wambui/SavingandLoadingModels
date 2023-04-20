@@ -27,4 +27,12 @@ from tensorflow.keras import layers
     with_info=True,
     as_supervised=True,
 )
-
+# reformat images to have the same res 224*224
+def format_image(image, label):
+    image = tf.image.resize(image, (IMAGE_RES, IMAGE_RES))/255.0
+    return image, label
+num_examples = info.splits['train'].num_examples
+BATCH_SIZE = 32
+IMAGE_RES = 224
+train_batches = train_examples.cache().shuffle(num_examples//4).map(format_image).batch(BATCH_SIZE).prefetch(1)
+validation_batches = validation_examples.cache().map(format_image).batch(BATCH_SIZE).prefetch(1)
