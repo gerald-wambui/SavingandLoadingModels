@@ -76,3 +76,17 @@ for n in range(30):
     plt.title(predicted_class_names[n].title(), color=color)
     plt.axis('off')
     _ = plt.suptitle("Model predictions (blue: correct, red: incorrect)")
+# save as keras .h5 model HDF5 file time is used for name to correspond to our current time stamp
+t = time.time()
+export_path_keras = "./{}.h5".format(int(t))
+print(export_path_keras)
+model.save(export_path_keras)
+
+!ls
+
+reloaded = tf.keras.models.load_model(
+    eport_path_keras,
+    custom_objects={'KerasLayer': hub.KerasLayer}
+)
+reloaded.summary()
+
