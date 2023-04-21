@@ -109,4 +109,14 @@ reloaded_sm = tf.saved_model.load(export_path_sm)
 reloaded_sm_result_batch = reloaded_sm(image_batch, training=False).numpy()
 (abs(result_batch - reloaded_sm_result_batch)).max()
 
+t = time.time()
+export_path_sm = "./{}".format(int(t))
+print(export_path_sm)
+tf.saved_model.save(model, export_path_sm)
+
+reloaded_sm_keras = tf.keras.models.load_model(
+    export_path_sm,
+    custom_objects={'KerasLayer': hub.KerasLayer}
+)
+reloaded_sm_keras.summary()
 
