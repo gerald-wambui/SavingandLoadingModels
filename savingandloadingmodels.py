@@ -120,3 +120,18 @@ reloaded_sm_keras = tf.keras.models.load_model(
 )
 reloaded_sm_keras.summary()
 
+result_batch = model.predict(image_batch)
+reloaded_sm_keras_result_batch = reloaded_sm_keras.predict(image_batch)
+(abs(result_batch - reloaded_sm_keras_result_batch)).max()
+
+
+
+#download model
+!zip -r model.zip {export_path_sm}
+!ls
+try:
+    from google.colab import files
+    files.download('./model.zip')
+except ImportError:
+    pass
+
